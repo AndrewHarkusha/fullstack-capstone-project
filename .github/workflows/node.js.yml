@@ -1,0 +1,35 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install backend dependencies
+      run: |
+        cd giftlink-backend
+        npm install
+
+    - name: Install frontend dependencies
+      run: |
+        cd giftlink-frontend
+        npm install
+
+    - name: Install sentiment dependencies
+      run: |
+        cd sentiment
+        npm install
